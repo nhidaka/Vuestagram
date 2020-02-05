@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// サーバからは、すべての URL で index テンプレートを返却
+// {any?} ： 任意のパスパラメータ any を受け入れる
+// '.+' :「任意の文字が一文字以上」つまり「なんでもいい」
+
+Route::get('/{any?}', function () {
+    return view('index')->where('any', '.+');
 });
+
+// アロー関数バージョンもメモ
+// Route::get('/{any?}', fn() => view('index'))->where('any', '.+');
+
